@@ -1,58 +1,128 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+<div class="container">
+  <div class="layout">
+
+    <div>
+      <img width="200px" src="https://pngimage.net/wp-content/uploads/2018/06/png-clave-de-sol-5.png">
+    </div>
+
+    <div>
+      <button class="button-generate generate-minor" @click="generateScaleMajor">Generate minor scale</button>
+      <button class="button-generate generate-major" @click="generateScaleMinor">Generate major scale</button>
+    </div>
+    <div style="padding: 10px">
+      <span :class="note === tone ? 'note-selected' : 'notes'" v-for="note in [ 'C', 'D', 'E', 'F', 'G', 'A', 'B']" :key="note" @click="selectNote(note)"> {{ note }} </span>
+    </div>
+
+    <p class="result" v-for="scale in notesGoodLooking" :key="scale">{{ scale }}</p>
   </div>
+</div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  data: () => ({
+    arrayScales: [],
+    tone: 'G',
+  }),
+  computed: {
+    notesGoodLooking() {
+      const scalesGoodLooking = []
+      for (let scale of this.arrayScales) {
+        scalesGoodLooking.push(
+          scale.join(' ')
+        )
+      }
+      return scalesGoodLooking
+    }
+  },
+  methods: {
+    generateScaleMajor() {
+      const scale = []
+      const arrayNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+      scale.push(this.tone)
+      const indexTone = arrayNotes.indexOf(this.tone)
+      scale.push(arrayNotes[indexTone + 2])
+      scale.push(arrayNotes[indexTone + 4])
+      scale.push(arrayNotes[indexTone + 5])
+      scale.push(arrayNotes[indexTone + 7])
+      scale.push(arrayNotes[indexTone + 9])
+      scale.push(arrayNotes[indexTone + 11])
+      scale.push(arrayNotes[indexTone + 12])
+      this.arrayScales.unshift(scale)
+    },
+    generateScaleMinor() {
+      const scale = []
+      const arrayNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+      scale.push(this.tone)
+      const indexTone = arrayNotes.indexOf(this.tone)
+      scale.push(arrayNotes[indexTone + 2])
+      scale.push(arrayNotes[indexTone + 3])
+      scale.push(arrayNotes[indexTone + 5])
+      scale.push(arrayNotes[indexTone + 7])
+      scale.push(arrayNotes[indexTone + 8])
+      scale.push(arrayNotes[indexTone + 10])
+      scale.push(arrayNotes[indexTone + 12])
+      this.arrayScales.unshift(scale)
+    },
+    selectNote(note) {
+      this.tone = note
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+  padding: 10px;
+  margin: 40px
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.layout {
+  padding: 2vw;
+  margin: 4vh 16vw;
+  border-radius: 20px;
+  box-shadow: 1px 1px 5px black;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.input {
+  padding: 5px;
 }
-a {
-  color: #42b983;
+
+.result {
+  font-size: 30px;
+}
+
+.notes {
+  font-size: 24px;
+  color: gray;
+  cursor: pointer;
+}
+
+.note-selected {
+  font-size: 24px;
+  color: blue;
+  cursor: pointer;
+}
+
+.generate-minor {
+  background-color: #9775fa;
+
+}
+
+.generate-major {
+  background-color: #3bc9db;
+
+}
+
+.button-generate {
+  padding: 16px;
+  box-shadow: 2px 2px 5px gray;
+  color: white;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 4px;
+  border: none;
 }
 </style>
