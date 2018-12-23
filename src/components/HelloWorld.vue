@@ -1,17 +1,17 @@
 <template>
 <div class="container">
   <div class="layout">
-
-    <div>
+    <div stye="text-align: center">
       <img width="200px" src="https://pngimage.net/wp-content/uploads/2018/06/png-clave-de-sol-5.png">
     </div>
 
-    <div>
-      <button class="button-generate generate-minor" @click="generateScaleMajor">Generate minor scale</button>
-      <button class="button-generate generate-major" @click="generateScaleMinor">Generate major scale</button>
-    </div>
     <div style="padding: 10px">
       <span :class="note === tone ? 'note-selected' : 'notes'" v-for="note in [ 'C', 'D', 'E', 'F', 'G', 'A', 'B']" :key="note" @click="selectNote(note)"> {{ note }} </span>
+    </div>
+
+    <div>
+      <button class="button-generate generate-major" @click="generateScaleMajor">Generate major scale</button>
+      <button class="button-generate generate-minor" @click="generateScaleMinor">Generate minor scale</button>
     </div>
 
     <p class="result" v-for="scale in notesGoodLooking" :key="scale">{{ scale }}</p>
@@ -80,10 +80,23 @@ export default {
 }
 
 .layout {
-  padding: 2vw;
-  margin: 4vh 16vw;
+
   border-radius: 20px;
   box-shadow: 1px 1px 5px black;
+}
+
+@media screen and (min-width: 700px) {
+  .layout {
+    padding: 2vw;
+    margin: 4vh 8vw;
+
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .layout {
+    padding: 2vh 0;
+  }
 }
 
 .input {
