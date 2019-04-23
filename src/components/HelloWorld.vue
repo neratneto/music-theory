@@ -2,7 +2,7 @@
 <div class="container">
   <div class="layout">
     <div stye="text-align: center">
-      <img width="200px" src="https://pngimage.net/wp-content/uploads/2018/06/png-clave-de-sol-5.png">
+      <img width="200px" src="../assets/logo.png">
     </div>
 
     <div style="padding: 10px">
@@ -21,66 +21,113 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   data: () => ({
     arrayScales: [],
-    tone: 'G',
+    tone: "G"
   }),
   computed: {
     notesGoodLooking() {
-      const scalesGoodLooking = []
+      const scalesGoodLooking = [];
       for (let scale of this.arrayScales) {
-        scalesGoodLooking.push(
-          scale.join(' ')
-        )
+        scalesGoodLooking.push(scale.join(" "));
       }
-      return scalesGoodLooking
+      return scalesGoodLooking;
     }
   },
   methods: {
     generateScaleMajor() {
-      const scale = []
-      const arrayNotes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-      scale.push(this.tone)
-      const indexTone = arrayNotes.indexOf(this.tone)
-      scale.push(arrayNotes[indexTone + 2])
-      scale.push(arrayNotes[indexTone + 4])
-      scale.push(arrayNotes[indexTone + 5])
-      scale.push(arrayNotes[indexTone + 7])
-      scale.push(arrayNotes[indexTone + 9])
-      scale.push(arrayNotes[indexTone + 11])
-      scale.push(arrayNotes[indexTone + 12])
-      this.arrayScales.unshift(scale)
+      const scale = [];
+      const arrayNotes = [
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B",
+        "C",
+        "C#",
+        "D",
+        "D#",
+        "E",
+        "F",
+        "F#",
+        "G",
+        "G#",
+        "A",
+        "A#",
+        "B"
+      ];
+      scale.push(this.tone);
+      const indexTone = arrayNotes.indexOf(this.tone);
+      scale.push(arrayNotes[indexTone + 2]);
+      scale.push(arrayNotes[indexTone + 4]);
+      scale.push(arrayNotes[indexTone + 5]);
+      scale.push(arrayNotes[indexTone + 7]);
+      scale.push(arrayNotes[indexTone + 9]);
+      scale.push(arrayNotes[indexTone + 11]);
+      scale.push(arrayNotes[indexTone + 12]);
+      this.arrayScales.unshift(scale);
     },
     generateScaleMinor() {
-      const scale = []
-      const arrayNotes = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
-      scale.push(this.tone)
-      const indexTone = arrayNotes.indexOf(this.tone)
-      scale.push(arrayNotes[indexTone + 2])
-      scale.push(arrayNotes[indexTone + 3])
-      scale.push(arrayNotes[indexTone + 5])
-      scale.push(arrayNotes[indexTone + 7])
-      scale.push(arrayNotes[indexTone + 8])
-      scale.push(arrayNotes[indexTone + 10])
-      scale.push(arrayNotes[indexTone + 12])
-      this.arrayScales.unshift(scale)
+      const scale = [];
+      const arrayNotes = [
+        "C",
+        "Db",
+        "D",
+        "Eb",
+        "E",
+        "F",
+        "Gb",
+        "G",
+        "Ab",
+        "A",
+        "Bb",
+        "B",
+        "C",
+        "Db",
+        "D",
+        "Eb",
+        "E",
+        "F",
+        "Gb",
+        "G",
+        "Ab",
+        "A",
+        "Bb",
+        "B"
+      ];
+      scale.push(this.tone);
+      const indexTone = arrayNotes.indexOf(this.tone);
+      scale.push(arrayNotes[indexTone + 2]);
+      scale.push(arrayNotes[indexTone + 3]);
+      scale.push(arrayNotes[indexTone + 5]);
+      scale.push(arrayNotes[indexTone + 7]);
+      scale.push(arrayNotes[indexTone + 8]);
+      scale.push(arrayNotes[indexTone + 10]);
+      scale.push(arrayNotes[indexTone + 12]);
+      this.arrayScales.unshift(scale);
     },
     selectNote(note) {
-      this.tone = note
+      this.tone = note;
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .container {
   padding: 10px;
-  margin: 40px
+  margin: 40px;
 }
 
 .layout {
-
   border-radius: 20px;
   box-shadow: 1px 1px 5px black;
 }
@@ -89,7 +136,6 @@ export default {
   .layout {
     padding: 2vw;
     margin: 4vh 8vw;
-
   }
 }
 
@@ -121,12 +167,10 @@ export default {
 
 .generate-minor {
   background-color: #9775fa;
-
 }
 
 .generate-major {
   background-color: #3bc9db;
-
 }
 
 .button-generate {
